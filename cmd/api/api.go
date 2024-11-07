@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/Georgy27/social/docs" // This is required for swagger docs
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-
 	httpSwagger "github.com/swaggo/http-swagger/v2"
-	"github.com/swaggo/swag/example/basic/docs"
 	"social/internal/store"
 
 	"log"
@@ -83,7 +82,7 @@ func (app *application) mount() http.Handler {
 
 func (app *application) serve(r http.Handler) error {
 	// Docs
-	docs.SwaggerInfo.Version
+	docs.SwaggerInfo.Version = version
 
 	srv := &http.Server{
 		Addr:         app.config.addr,
